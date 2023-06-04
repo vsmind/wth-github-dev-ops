@@ -21,7 +21,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Move to Application folder
-      run: cd ./Application
+      run: cd ./Application/src/RazorPagesTestSample
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
