@@ -76,3 +76,17 @@ jobs:
           context: ./Application/src/RazorPagesTestSample/
           tags: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
     needs: build
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure Login
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Deploy container
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'vswthdevops-dev'
+          images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
+    needs: docker
