@@ -1,0 +1,30 @@
+name: WTH GitHub workflow
+run-name: ${{ github.actor }} is learning WTH
+
+on: [workflow_dispatch]
+
+env:
+    DOG_NAME: Fry
+
+jobs:
+    job1:
+        name: Job 1
+        runs-on: ubuntu-latest
+        steps:
+        - name: Simple echo
+          run: echo "Dog name is $DOG_NAME"
+
+    job2:
+        name: Job 2
+        runs-on: ubuntu-latest
+        steps:
+            - name: Cow
+              uses: mscoutermarsh/cowsays-action@master
+              with:
+                  text: 'Woff???'
+                  color: 'green'
+            - name: Dog
+              run: echo "$DOG_SAY"
+        needs: job1
+        env:
+            DOG_SAY: "Woff on this issue"
