@@ -1,21 +1,21 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "webAppName": {
-            "defaultValue": "<prefix>devops-dev",
+            "defaultValue": "vswthdevops-dev",
             "type": "String"
         },
         "hostingPlanName": {
-            "defaultValue": "<prefix>devops-asp",
+            "defaultValue": "vswthdevops-asp",
             "type": "String"
         },
         "appInsightsLocation": {
-            "defaultValue": "South Central US",
+            "defaultValue": "Norway East",
             "type": "String"
         },
         "appInsightsName": {
-            "defaultValue": "<prefix>devops-ai",
+            "defaultValue": "vswthdevops-ai",
             "type": "String"
         },        
         "sku": {
@@ -23,15 +23,15 @@
             "type": "String"
         },
         "registryName": {
-            "defaultValue": "<prefix>devopsreg",
+            "defaultValue": "vswthdevopsreg",
             "type": "String"
         },
         "imageName": {
-            "defaultValue": "<prefix>devopsimage",
+            "defaultValue": "vswthdevopsimage",
             "type":"String"
         },
         "registryLocation": {
-            "defaultValue": "South Central US",
+            "defaultValue": "Norway East",
             "type": "String"
         },
         "registrySku": {
@@ -47,7 +47,7 @@
         {
             "type": "Microsoft.Web/sites",
             "name": "[parameters('webAppName')]",
-            "apiVersion": "2016-03-01",
+            "apiVersion": "2022-09-01",
             "location": "[resourceGroup().location]",
             "tags": {
                 "[concat('hidden-related:', '/subscriptions/', subscription().subscriptionId,'/resourcegroups/', resourceGroup().name, '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]": "empty"
