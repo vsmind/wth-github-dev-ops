@@ -1,2 +1,5 @@
 # wth-github-dev-ops
-WTH workshop preparations
+
+![WTH LOGO](./docs/wth-logo.png)
+
+WTH devops workshop preparations
