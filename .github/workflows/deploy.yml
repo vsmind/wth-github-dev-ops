@@ -20,5 +20,6 @@ jobs:
           - name: Azure Deploy
             uses: azure/arm-deploy@v1
             with:
+              scope: resourcegroup
               resourceGroupName: ${{ vars.AZURE_RG_WTH }}
               template: ./ARM-Templates/container-webapp-template.json
