@@ -15,6 +15,10 @@ on:
 
 env:
   working-directory: ./Application/src/RazorPagesTestSample
+  registryName: vswthdevopsreg.azurecr.io
+  repositoryName: wth/dotnetcoreapp
+  dockerFolderPath: Application/src/RazorPagesTestSample.
+  tag: 0.0.1
 
 jobs:
   build:
@@ -53,3 +57,14 @@ jobs:
             repo: context.repo.repo,
             title: "Error in .NET run"
           })
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Docker login
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.registryName }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
