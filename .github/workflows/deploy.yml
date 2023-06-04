@@ -17,3 +17,8 @@ jobs:
               creds: ${{ secrets.AZURE_CREDENTIALS }}
           - name: Check variable
             run: echo ${{  vars.AZURE_RG_WTH  }}
+          - name: Azure Deploy
+            uses: azure/arm-deploy@v1
+            with:
+              resourceGroupName: ${{ vars.AZURE_RG_WTH }}
+              template: ./ARM-Templates/container-webapp-template.json
