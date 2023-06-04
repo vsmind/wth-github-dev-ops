@@ -18,7 +18,7 @@ env:
   registryName: vswthdevopsreg.azurecr.io
   repositoryName: wth/dotnetcoreapp
   dockerFolderPath: Application/src/RazorPagesTestSample.
-  tag: 0.0.1
+  tag: ${{ github.run_number }}
 
 jobs:
   build:
@@ -75,3 +75,4 @@ jobs:
           push: true
           context: ./Application/src/RazorPagesTestSample/
           tags: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
+    needs: build
