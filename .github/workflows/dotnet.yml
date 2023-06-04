@@ -68,3 +68,9 @@ jobs:
           registry: ${{ env.registryName }}
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
+      -
+        name: Docker Build and push
+        uses: docker/build-push-action@v4
+        with:
+          push: true
+          tags: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
