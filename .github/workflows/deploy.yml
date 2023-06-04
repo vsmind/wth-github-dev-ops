@@ -1,4 +1,4 @@
-name: WTH GitHub workflow
+name: WTH Azure infrastructure
 run-name: ${{ github.actor }} infrastructure provision
 
 on: 
@@ -16,4 +16,4 @@ jobs:
             with:
               creds: ${{ secrets.AZURE_CREDENTIALS }}
           - name: Check variable
-            run: echo $AZURE_RG_WTH
+            run: echo ${{  vars.AZURE_RG_WTH  }}
