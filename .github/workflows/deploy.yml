@@ -4,6 +4,9 @@ run-name: ${{ github.actor }} infrastructure provision
 on: 
     workflow_dispatch:
 
+env:
+    targetEnv: "test"
+
 jobs:
     infrastructure:
         name: azure infrastructure
@@ -23,3 +26,4 @@ jobs:
               scope: resourcegroup
               resourceGroupName: ${{ vars.AZURE_RG_WTH }}
               template: ./ARM-Templates/container-webapp-template.json
+              parameters: webAppName=vswthdevops-${{ env.targetEnv }}
