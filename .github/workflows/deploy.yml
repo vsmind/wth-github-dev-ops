@@ -3,6 +3,11 @@ run-name: ${{ github.actor }} infrastructure provision
 
 on: 
     workflow_dispatch:
+        inputs:
+            web_app_name:
+              type: string
+              description: 'A name of webapp'
+              required: true
 
 env:
     targetEnv: "test"
@@ -26,4 +31,4 @@ jobs:
               scope: resourcegroup
               resourceGroupName: ${{ vars.AZURE_RG_WTH }}
               template: ./ARM-Templates/container-webapp-template.json
-              parameters: webAppName=vswthdevops-${{ env.targetEnv }}
+              parameters: webAppName=vswthdevops-${{ github.event.inputs.web_app_name }}
