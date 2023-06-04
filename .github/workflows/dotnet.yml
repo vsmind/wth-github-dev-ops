@@ -106,3 +106,18 @@ jobs:
           app-name: 'vswthdevops-test'
           images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
     needs: docker
+
+  deploy_prod:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Azure Login
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Deploy container
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'vswthdevops-prod'
+          images: ${{ env.registryName }}/${{ env.repositoryName }}:${{ env.tag }}
+    needs: docker
