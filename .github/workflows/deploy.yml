@@ -31,4 +31,4 @@ jobs:
               scope: resourcegroup
               resourceGroupName: ${{ vars.AZURE_RG_WTH }}
               template: ./ARM-Templates/container-webapp-template.json
-              parameters: webAppName=vswthdevops-${{ github.event.inputs.web_app_name }}
+              parameters: webAppName=${{ github.event.inputs.web_app_name }}
