@@ -30,7 +30,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore
+#      run: dotnet restore
+      run: exit 1
       working-directory: ${{ env.working-directory }}
     - name: Build
       run: dotnet build --no-restore
@@ -38,3 +39,14 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
       working-directory: ${{ env.working-directory }}
+    - uses: actions/github-script@v6
+      id: error-script
+      if: failure()
+      with:
+        result-encoding: string
+        script: |
+          github.rest.issues.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            title: "Error in run"
+          })
